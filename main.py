@@ -5,10 +5,12 @@ import time
 class Play:
     def __init__(self):
 
-        self.window_width = 600
-        self.window_height = 300
+        self.window_width = 520
+        self.window_height = 220
 
-        self.screen_ratio = 24/9
+        screen_horizontal_cell = 25
+        screen_vertical_cell = 9
+        self.screen_ratio = screen_horizontal_cell/screen_vertical_cell
         self.margin = 20
 
         # Ana pencereyi oluştur
@@ -30,11 +32,12 @@ class Play:
         self.screen = Screen(self.canvas,
             square_corner_one=screen_size[0],
             square_corner_two=screen_size[1],
+            horizontal_cell = screen_horizontal_cell,
+            vertical_cell = screen_vertical_cell,
             square_color="red")
 
         self.run()
 
-#---------------kalınan yer-------------------
     def run(self):
 
         # 1000 milisaniye (1 saniye) sonra tekrar run()'u çalıştır
