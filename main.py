@@ -1,6 +1,7 @@
 from tkinter import *
 from gui import Screen
 import time
+import utils
 
 class Play:
     def __init__(self):
@@ -39,6 +40,19 @@ class Play:
         self.run()
 
     def run(self):
+
+        # print(self.screen.digits["digit1"].cell["cell1"])
+
+        current_time = utils.get_current_time()
+        digits = utils.divide_digits(current_time)
+        digits_cells = utils.divide_cells(digits)
+        print(current_time)
+        print(digits_cells)
+
+        for i, value in enumerate(digits_cells, start=1):
+            for j in value:
+                square_corner_one,square_corner_two = self.screen.digits[f"digit{i}"].cell[f"cell{j}"]
+                utils.draw_digit(self.canvas,square_corner_one,square_corner_two,"green",tag="cell")
 
         # 1000 milisaniye (1 saniye) sonra tekrar run()'u çalıştır
         self.root.after(1000, self.run)

@@ -18,19 +18,18 @@ class Screen:
         self.horizontal_cell_size = (self.square_corner_two[0]-self.square_corner_one[0])/self.horizontal_cell
 
         # Geometrik şekiller çizelim
-        self.draw_square(self.square_corner_one,self.square_corner_two,self.square_color,tag="screen")
+        # self.draw_square(self.square_corner_one,self.square_corner_two,self.square_color,tag="screen")
 
         self.digits = {}
         for i in range(5):
             i = i+1
-            if i != 3:
-                square_corner_one,square_corner_two = self.find_digits_corner(i)
-                self.digits[f"digit{i}"] = Digits(self.canvas,i,square_corner_one,square_corner_two)
+            square_corner_one,square_corner_two = self.find_digits_corner(i)
+            self.digits[f"digit{i}"] = Digits(self.canvas,i,square_corner_one,square_corner_two)
 
     def find_digits_corner(self,digit_id):
         """ 
         digits ==>  0 8 : 4 6
-        id     ==>  1 2 3 4 5
+        id     ==>  1 2 5 3 4
         """
 
         if digit_id == 1:
@@ -42,17 +41,17 @@ class Screen:
                           self.square_corner_one[1])
             corner_two = (self.horizontal_cell_size*11+self.square_corner_one[0],
                           self.square_corner_two[1])
-        # elif digit_id == 3:
-        #     corner_one = (self.horizontal_cell_size*12+self.square_corner_one[0],
-        #                   self.square_corner_one[1])
-        #     corner_two = (self.horizontal_cell_size*13+self.square_corner_one[0],
-        #                   self.square_corner_two[1])
-        elif digit_id == 4:
+        elif digit_id == 5:
+            corner_one = (self.horizontal_cell_size*12+self.square_corner_one[0],
+                          self.square_corner_one[1])
+            corner_two = (self.horizontal_cell_size*13+self.square_corner_one[0],
+                          self.square_corner_two[1])
+        elif digit_id == 3:
             corner_one = (self.horizontal_cell_size*14+self.square_corner_one[0],
                           self.square_corner_one[1])
             corner_two = (self.horizontal_cell_size*19+self.square_corner_one[0],
                           self.square_corner_two[1])
-        elif digit_id == 5:
+        elif digit_id == 4:
             corner_one = (self.horizontal_cell_size*20+self.square_corner_one[0],
                           self.square_corner_one[1])
             corner_two = (self.horizontal_cell_size*25+self.square_corner_one[0],
@@ -90,16 +89,16 @@ class Digits:
         self.horizontal_cell_size = (self.corner_two[0]-corner_one[0])/self.horizontal_cell
         self.vertical_cell_size = (self.corner_two[1]-corner_one[1])/self.vertical_cell
 
-        self.draw_digit(self.corner_one,
-                         self.corner_two,
-                         self.colors,
-                         tag="digit")
+        # self.draw_digit(self.corner_one,self.corner_two,self.colors,tag="digit")
 
-        for i in range(6):
-            square_corner_one,square_corner_two = self.find_cells_corner(i)
-            self.draw_digit(square_corner_one,square_corner_two,"green",tag="cell")
+        self.cell = {}
 
-            # self.digits[f"digit{i}"] = Digits(self.canvas,i,square_corner_one,square_corner_two)
+        for i in range(7):
+
+            # square_corner_one,square_corner_two = self.find_cells_corner(i)
+            # self.draw_digit(square_corner_one,square_corner_two,"green",tag="cell")
+
+            self.cell[f"cell{i}"] = self.find_cells_corner(i)
 
     def find_cells_corner(self,cell_id):
         """ 
@@ -111,39 +110,39 @@ class Digits:
         """
         if cell_id == 0:
             corner_one = (self.horizontal_cell_size*1 + self.corner_one[0],
-                          self.corner_two[1])
+                          self.corner_one[1])
             corner_two = (self.horizontal_cell_size*4 + self.corner_one[0],
-                          self.vertical_cell_size*1 + self.corner_two[1])
+                          self.vertical_cell_size*1 + self.corner_one[1])
         elif cell_id == 1:
             corner_one = (self.horizontal_cell_size*4 + self.corner_one[0],
-                          self.vertical_cell_size*1 + self.corner_two[1])
+                          self.vertical_cell_size*1 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*5 + self.corner_one[0],
-                          self.vertical_cell_size*4 + self.corner_two[1])
+                          self.vertical_cell_size*4 + self.corner_one[1])
         elif cell_id == 2:
             corner_one = (self.horizontal_cell_size*4 + self.corner_one[0],
-                          self.vertical_cell_size*5 + self.corner_two[1])
+                          self.vertical_cell_size*5 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*5 + self.corner_one[0],
-                          self.vertical_cell_size*8 + self.corner_two[1])
+                          self.vertical_cell_size*8 + self.corner_one[1])
         elif cell_id == 3:
             corner_one = (self.horizontal_cell_size*1 + self.corner_one[0],
-                          self.vertical_cell_size*8 + self.corner_two[1])
+                          self.vertical_cell_size*8 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*4 + self.corner_one[0],
-                          self.vertical_cell_size*9 + self.corner_two[1])
+                          self.vertical_cell_size*9 + self.corner_one[1])
         elif cell_id == 4:
             corner_one = (self.horizontal_cell_size*0 + self.corner_one[0],
-                          self.vertical_cell_size*5 + self.corner_two[1])
+                          self.vertical_cell_size*5 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*1 + self.corner_one[0],
-                          self.vertical_cell_size*8 + self.corner_two[1])
+                          self.vertical_cell_size*8 + self.corner_one[1])
         elif cell_id == 5:
             corner_one = (self.horizontal_cell_size*0 + self.corner_one[0],
-                          self.vertical_cell_size*1 + self.corner_two[1])
+                          self.vertical_cell_size*1 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*1 + self.corner_one[0],
-                          self.vertical_cell_size*4 + self.corner_two[1])
+                          self.vertical_cell_size*4 + self.corner_one[1])
         elif cell_id == 6:
             corner_one = (self.horizontal_cell_size*1 + self.corner_one[0],
-                          self.vertical_cell_size*4 + self.corner_two[1])
+                          self.vertical_cell_size*4 + self.corner_one[1])
             corner_two = (self.horizontal_cell_size*4 + self.corner_one[0],
-                          self.vertical_cell_size*7 + self.corner_two[1])
+                          self.vertical_cell_size*5 + self.corner_one[1])
         return corner_one,corner_two
 
     def draw_digit(self,square_corner_one,square_corner_two,square_color,tag):
