@@ -1,10 +1,25 @@
 import time
 
 def get_current_time():
+    """Güncel saati çeker"""
     t = time.localtime()
     return (t.tm_hour,t.tm_min)
 
+def find_array_diff(current,old):
+    """İki dizi arasındaki farkları bulur. (eklenenler,çıkanlar) döndürür"""
+
+    add_array = [[],[],[],[]]
+
+    for i, in_array in enumerate(current,start=0):
+        for in_item in in_array:
+            if in_item not in old[i]:
+                add_array[i].append(in_item)
+
+    return add_array
+
 def divide_digits(current_time):
+    """Bir sayıyı basamaklarına ayırır"""
+
     digits = []
     for i in current_time:
         tens_place = i // 10
@@ -13,6 +28,7 @@ def divide_digits(current_time):
     return digits
 
 def divide_cells(digits):
+    """Basamağı hücrelere böler"""
     """ 
         cell id ==>    0  
                      5   1

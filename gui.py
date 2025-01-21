@@ -17,9 +17,6 @@ class Screen:
 
         self.horizontal_cell_size = (self.square_corner_two[0]-self.square_corner_one[0])/self.horizontal_cell
 
-        # Geometrik şekiller çizelim
-        # self.draw_square(self.square_corner_one,self.square_corner_two,self.square_color,tag="screen")
-
         self.digits = {}
         for i in range(5):
             i = i+1
@@ -89,8 +86,6 @@ class Digits:
         self.horizontal_cell_size = (self.corner_two[0]-corner_one[0])/self.horizontal_cell
         self.vertical_cell_size = (self.corner_two[1]-corner_one[1])/self.vertical_cell
 
-        # self.draw_digit(self.corner_one,self.corner_two,self.colors,tag="digit")
-
         self.cell = {}
 
         for i in range(7):
@@ -153,11 +148,3 @@ class Digits:
             fill=square_color, outline=square_color,
             tags=tag
         )
-
-class Cells:
-    def __init__(self,
-                id,
-                value):
-
-        self.id = id
-        self.value = value

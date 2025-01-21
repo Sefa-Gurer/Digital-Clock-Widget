@@ -1,6 +1,5 @@
 from tkinter import *
 from gui import Screen
-import time
 import utils
 
 class Play:
@@ -13,6 +12,8 @@ class Play:
         screen_vertical_cell = 9
         self.screen_ratio = screen_horizontal_cell/screen_vertical_cell
         self.margin = 20
+
+        self.old_digits_cells = [[],[],[],[]]
 
         # Ana pencereyi oluştur
         self.root = Tk()
@@ -40,20 +41,26 @@ class Play:
         self.run()
 
     def run(self):
-
-        # print(self.screen.digits["digit1"].cell["cell1"])
-
         current_time = utils.get_current_time()
         digits = utils.divide_digits(current_time)
         digits_cells = utils.divide_cells(digits)
-        print(current_time)
-        print(digits_cells)
 
-        for i, value in enumerate(digits_cells, start=1):
-            for j in value:
-                square_corner_one,square_corner_two = self.screen.digits[f"digit{i}"].cell[f"cell{j}"]
-                utils.draw_digit(self.canvas,square_corner_one,square_corner_two,"green",tag="cell")
+        if digits_cells != self.old_digits_cells:
+            print("Saat değişti")
 
+            add_item = utils.find_array_diff(digits_cells,self.old_digits_cells)
+            delete_item = utils.find_array_diff(self.old_digits_cells,digits_cells)
+
+            for i, value in enumerate(add_item, start=1):
+                for j in value:
+                    square_corner_one,square_corner_two = self.screen.digits[f"digit{i}"].cell[f"cell{j}"]
+                    utils.draw_digit(self.canvas,square_corner_one,square_corner_two,"green",tag=f"cell{i}{j}")
+
+            for i, value in enumerate(delete_item, start=1):
+                for j in value:
+                    self.canvas.delete(f"cell{i}{j}")
+
+        self.old_digits_cells = digits_cells
         # 1000 milisaniye (1 saniye) sonra tekrar run()'u çalıştır
         self.root.after(1000, self.run)
 
