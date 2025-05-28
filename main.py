@@ -5,7 +5,7 @@ import utils
 class Play:
     def __init__(self):
 
-        self.window_width = 520
+        self.window_width = 420
         self.window_height = 220
 
         screen_horizontal_cell = 25
@@ -19,6 +19,8 @@ class Play:
         self.root = Tk()
 
         window_size = f"{self.window_width}x{self.window_height}"
+
+        self.root.overrideredirect(True)
 
         # Pencere boyutunu ve şeffaflığını ayarla
         self.root.geometry(window_size)
@@ -54,7 +56,7 @@ class Play:
             for i, value in enumerate(add_item, start=1):
                 for j in value:
                     square_corner_one,square_corner_two = self.screen.digits[f"digit{i}"].cell[f"cell{j}"]
-                    utils.draw_digit(self.canvas,square_corner_one,square_corner_two,"green",tag=f"cell{i}{j}")
+                    utils.draw_digit(self.canvas,square_corner_one,square_corner_two,"lightsteelblue",tag=f"cell{i}{j}")
 
             for i, value in enumerate(delete_item, start=1):
                 for j in value:
