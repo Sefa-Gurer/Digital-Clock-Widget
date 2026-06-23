@@ -1,5 +1,7 @@
 # 🕒 Digital Clock Widget
 
+> **[⬇️ DigitalClock.exe indir (v2.0)](../../releases/latest)** — Python kurmadan, çift tıkla çalıştır.
+
 Masaüstünüzde duran, **çerçevesiz ve şeffaf** arka planlı, 7 parçalı (seven-segment) tarzında bir dijital saat widget'ı. Tamamen Python + Tkinter ile yazılmıştır; her rakam, hücrelere bölünerek tek tek çizilir.
 
 Saatin **konumu, rengi ve boyutu** doğrudan widget üzerinden düzenlenebilir ve ayarlar kalıcı olarak saklanır — bilgisayarı her açtığınızda saat en son bıraktığınız hâliyle gelir.
